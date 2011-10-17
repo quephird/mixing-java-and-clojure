@@ -3,7 +3,7 @@
 This is a simple demonstration of 
 
    1) Java interop, and
-   2) build management using the new capabilities of leiningen.
+   2) build management using the new capabilities of Leiningen.
 
 This "project" came about from a conversation with a colleague about how to maintain two sets of code, one in Java and the other in Clojure, and be able to easily build an app using them.
 
