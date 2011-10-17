@@ -1,19 +1,83 @@
-# mixing-java-and-clojure
+## Description
 
 This is a simple demonstration of 
+
    1) Java interop, and
    2) build management using the new capabilities of leiningen.
 
-## Usage
+This "project" came about from a conversation with a colleague about how to maintain two sets of code, one in Java and the other in Clojure, 
+and be able to easily build an app using them.
 
-FIXME: write
+## Building
 
-## Installation
+You need a newer version of Leiningen which has the javac task available to it. You can get it here: https://github.com/technomancy/leiningen.
+I believe this task was added in 1.4.0, but you should simply use the latest version, which at this time is 1.5.2.
 
-FIXME: write
+Once you have that set up, simply open up a command prompt at the project and run the following:
+
+    lein uberjar
+    java -jar mixing-java-and-clojure-1.0.0-SNAPSHOT-standalone.jar
+
+You should see the following echoed to the screen:
+
+    I am in Foo.java!!!
+    I am in bar.clj!!!
+
+In order for this to work in your project, namely being able to call Java code from within Clojure and be able to compile it all easily, 
+you have to do define the project correctly in project.clj. Here is the configuration for this simple project:
+
+    (defproject mixing-java-and-clojure "1.0.0-SNAPSHOT"
+      :description "A simple demonstration of Java interop and build management using javac"
+      :dependencies [[org.clojure/clojure "1.2.0"]
+                     [org.clojure/clojure-contrib "1.2.0"]]
+      :source-path "src/clojure"
+      :java-source-path "src/java"
+      :main com.quephird.mjac.bar)
+
+The key key (no pun intended) here is :java-source-path. If you leave it out, the lein uberjar (or lein javac) will fail with something like this:
+
+E:\foo>lein uberjar
+Cleaning up.
+Copying 2 files to E:\foo\lib
+Exception in thread "main" java.lang.ClassNotFoundException: com.quephird.mjac.F
+oo (bar.clj:1)
+        at clojure.lang.Compiler$InvokeExpr.eval(Compiler.java:2911)
+        at clojure.lang.Compiler.compile1(Compiler.java:5933)
+        at clojure.lang.Compiler.compile1(Compiler.java:5923)
+        at clojure.lang.Compiler.compile(Compiler.java:5992)
+        at clojure.lang.RT.compile(RT.java:368)
+        at clojure.lang.RT.load(RT.java:407)
+        at clojure.lang.RT.load(RT.java:381)
+        at clojure.core$load$fn__4511.invoke(core.clj:4905)
+        at clojure.core$load.doInvoke(core.clj:4904)
+        at clojure.lang.RestFn.invoke(RestFn.java:409)
+        at clojure.core$load_one.invoke(core.clj:4729)
+        at clojure.core$compile$fn__4516.invoke(core.clj:4916)
+        at clojure.core$compile.invoke(core.clj:4915)
+        at user$eval7.invoke(NO_SOURCE_FILE:1)
+        at clojure.lang.Compiler.eval(Compiler.java:5424)
+        at clojure.lang.Compiler.eval(Compiler.java:5415)
+        at clojure.lang.Compiler.eval(Compiler.java:5391)
+        at clojure.core$eval.invoke(core.clj:2382)
+        at clojure.main$eval_opt.invoke(main.clj:235)
+        at clojure.main$initialize.invoke(main.clj:254)
+        at clojure.main$null_opt.invoke(main.clj:279)
+        at clojure.main$main.doInvoke(main.clj:354)
+        at clojure.lang.RestFn.invoke(RestFn.java:422)
+        at clojure.lang.Var.invoke(Var.java:369)
+        at clojure.lang.AFn.applyToHelper(AFn.java:165)
+        at clojure.lang.Var.applyTo(Var.java:482)
+        at clojure.main.main(main.java:37)
+Caused by: java.lang.ClassNotFoundException: com.quephird.mjac.Foo
+        at java.net.URLClassLoader$1.run(URLClassLoader.java:202)
+        at java.security.AccessController.doPrivileged(Native Method)
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:190)
+        at clojure.lang.DynamicClassLoader.findClass(DynamicClassLoader.java:58)
+
 
 ## License
 
-Copyright (C) 2010 FIXME
-
+Copyright (C) 2011, dan kefford
 Distributed under the Eclipse Public License, the same as Clojure.
+
+
