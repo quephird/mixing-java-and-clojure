@@ -5,8 +5,7 @@ This is a simple demonstration of
    1) Java interop, and
    2) build management using the new capabilities of leiningen.
 
-This "project" came about from a conversation with a colleague about how to maintain two sets of code, one in Java and the other in Clojure, 
-and be able to easily build an app using them.
+This "project" came about from a conversation with a colleague about how to maintain two sets of code, one in Java and the other in Clojure, and be able to easily build an app using them.
 
 ## Building
 
@@ -23,8 +22,7 @@ You should see the following echoed to the screen:
     I am in Foo.java!!!
     I am in bar.clj!!!
 
-In order for this to work in your project, namely being able to call Java code from within Clojure and be able to compile it all easily, 
-you have to do define the project correctly in project.clj. Here is the configuration for this simple project:
+In order for this to work in your project, namely being able to call Java code from within Clojure and be able to compile it all easily, you have to do define the project correctly in project.clj. Here is the configuration for this simple project:
 
     (defproject mixing-java-and-clojure "1.0.0-SNAPSHOT"
       :description "A simple demonstration of Java interop and build management using javac"
