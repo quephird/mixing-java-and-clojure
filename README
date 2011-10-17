@@ -1,0 +1,19 @@
+# mixing-java-and-clojure
+
+This is a simple demonstration of 
+   1) Java interop, and
+   2) build management using the new capabilities of leiningen.
+
+## Usage
+
+FIXME: write
+
+## Installation
+
+FIXME: write
+
+## License
+
+Copyright (C) 2010 FIXME
+
+Distributed under the Eclipse Public License, the same as Clojure.
