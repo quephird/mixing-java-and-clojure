@@ -9,8 +9,7 @@ This "project" came about from a conversation with a colleague about how to main
 
 ## Building
 
-You need a newer version of Leiningen which has the javac task available to it. You can get it here: https://github.com/technomancy/leiningen.
-I believe this task was added in 1.4.0, but you should simply use the latest version, which at this time is 1.5.2.
+You need a newer version of Leiningen which has the javac task available to it. You can get it here: https://github.com/technomancy/leiningen. I believe this task was added in 1.4.0, but you should simply use the latest version, which at this time is 1.5.2.
 
 Once you have that set up, simply open up a command prompt at the project and run the following:
 
