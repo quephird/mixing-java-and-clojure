@@ -21,7 +21,7 @@ You should see the following echoed to the screen:
     I am in Foo.java!!!
     I am in bar.clj!!!
 
-In order for this to work in your project, namely being able to call Java code from within Clojure and be able to compile it all easily, you have to do define the project correctly in project.clj. Here is the configuration for this simple project:
+In order for this to work in your project, namely being able to call Java code from within Clojure and be able to compile it all easily, you have to define the project correctly in project.clj. Here is the configuration for this simple project:
 
     (defproject mixing-java-and-clojure "1.0.0-SNAPSHOT"
       :description "A simple demonstration of Java interop and build management using javac"
@@ -31,7 +31,7 @@ In order for this to work in your project, namely being able to call Java code f
       :java-source-path "src/java"
       :main com.quephird.mjac.bar)
 
-The key key (no pun intended) here is :java-source-path. If you leave it out, the lein uberjar (or lein javac) will fail with something like this:
+The key key (no pun intended) here is :java-source-path. If you leave it out, lein uberjar (or lein javac) will fail with something like this:
 
 E:\foo>lein uberjar
 Cleaning up.
